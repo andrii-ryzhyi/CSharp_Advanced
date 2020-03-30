@@ -18,11 +18,11 @@ namespace ITEA_Collections
             UseCollection(numbers);
             UseList(numbers);
             UseWeirdYield();
-            
+
             UseEnumerator(numbers);
             UseObservable();
             UseWeirdYield();
-            
+
             Dictionary<int, string> dict = new Dictionary<int, string>();
             for (int i = 1; i < 11; i++)
             {
@@ -36,7 +36,7 @@ namespace ITEA_Collections
             Console.WriteLine();
             foreach (var item in dict)
             {
-                if(item.Key % 2 == 0)
+                if (item.Key % 2 == 0)
                     ToConsoleLine($"{item.Value}; ");
             }
             Console.WriteLine();
@@ -51,6 +51,20 @@ namespace ITEA_Collections
             iteaGeneric.Add("Second");
             iteaGeneric.InsertByIndex(1, "Third");
             ToConsole(iteaGeneric.ToString());
+
+            IteaCollection iteaCollection = new IteaCollection();
+            iteaCollection.AddMany(new object[] { "qweqwe", 1, 5, 4m, 4.5, "qasd", "JKJDFB" });
+            var strings = iteaCollection.ToEnumerableOnlyStrings(); // вызов
+            foreach (var item in strings) // вызов 1
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            iteaCollection.Add("asdasd");
+            foreach (var item in strings) // вызов 2
+            {
+                Console.WriteLine(item);
+            }
         }
 
         static void UseCollection(object[] objects)

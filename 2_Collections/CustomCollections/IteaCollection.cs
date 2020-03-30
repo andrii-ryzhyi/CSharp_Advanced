@@ -81,9 +81,20 @@ namespace ITEA_Collections.CustomCollections
         {
             foreach (var item in collection)
             {
-                if (item is string i)//if(item.GetType().Name == "String") string i = (string)item;                        
+                if (item is string i)                       
                     yield return i;
             }
+        }
+
+        public List<string> ToListOnlyStrings()
+        {
+            List<string> result = new List<string>();
+            foreach (var item in collection)
+            {
+                if (item is string i) 
+                    result.Add(i);
+            }
+            return result;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace IteaDelegates.IteaMessanger
     public delegate void OnMessage(Message message);
     public delegate void OnSend(object sender, OnSendEventArgs e);
 
-    public class Account
+    public class Account : INotifyable
     {
         public string Username { get; private set; }
         public List<Message> Messages { get; set; }
@@ -25,25 +25,31 @@ namespace IteaDelegates.IteaMessanger
             NewMessage += OnNewMessage;
         }
 
-        public Message CreateMessage(string text, Account to)
+        public Message CreateMessage(string text, INotifyable to)
         {
             var message = new Message(this, to, text);
             Messages.Add(message);
             return message;
         }
 
+        public void Subscribe(Group group)
+        {
+            group.AddUser(this);
+            group.InboxMessage += (sender, e) => this.NewMessage(e.Msg);
+        }
+
         public void Send(Message message)
         {
             message.Send = true;
             message.To.Messages.Add(message);
-            message.To.NewMessage(message);
+            message.To.OnNewMessage(message);
             OnSend?.Invoke(this, new OnSendEventArgs(message.ReadMessage(this), message.From.Username, message.To.Username));
         }
 
         public void OnNewMessage(Message message)
         {
             if (message.Send)
-                ToConsole($"OnNewMessage: {message.From.Username}: {message.Preview}", ConsoleColor.DarkYellow);
+                Console.WriteLine($"OnNewMessage:   Username: {this.Username} From: {message.From.Username}: {message.Preview}", ConsoleColor.DarkYellow);
         }
 
         public void ShowDialog(string username)

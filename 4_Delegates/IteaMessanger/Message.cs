@@ -7,7 +7,7 @@ namespace IteaDelegates.IteaMessanger
         readonly string text;
 
         public Account From { get; set; }
-        public Account To { get; set; }
+        public INotifyable To { get; set; }
         public bool Read { get; set; }
         public bool Send { get; set; }
         public DateTime Created { get; private set; } 
@@ -16,11 +16,11 @@ namespace IteaDelegates.IteaMessanger
         {
             get
             {
-                return $"{text.Substring(0, 10)}...";
+                return $"{text.Substring(0, text.Length)}...";
             }
         }
 
-        public Message(Account from, Account to, string text)
+        public Message(Account from, INotifyable to, string text)
         {
             From = from;
             To = to;
@@ -28,8 +28,7 @@ namespace IteaDelegates.IteaMessanger
             Read = false; //?
             Created = DateTime.Now;
         }
-
-        public string ReadMessage(Account account)
+        public string ReadMessage(INotifyable account)
         {
             Read = true;
             return (To == account || From == account) ? text : string.Empty;

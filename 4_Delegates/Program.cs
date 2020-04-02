@@ -42,8 +42,23 @@ namespace IteaDelegates
             Person person = new Person("QWERTY", 25, 0);
             update(person);
 
+            //////////////////////////////////////
 
-            
+            Account acc1 = new Account("Student 1");
+            Account acc2 = new Account("Student 2");
+            Account acc3 = new Account("Student 3");
+            Group cSharp = new Group("CSharp");
+            Message msg1 = acc1.CreateMessage("hello", acc2);
+            acc1.Send(msg1);
+            Console.WriteLine("----------------");
+            acc1.Subscribe(cSharp);
+            acc2.Subscribe(cSharp);
+            acc3.Subscribe(cSharp);
+            Message msg2 = acc3.CreateMessage("hi all", cSharp);
+            acc3.Send(msg2);
+
+            Console.Read();
+
         }
 
         static void Method(object sender, EventArgs eventArgs) 

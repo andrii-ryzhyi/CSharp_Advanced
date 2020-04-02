@@ -8,6 +8,6 @@ namespace IteaDelegates.IteaMessanger
     {
         List<Message> Messages { get; set; }
         string Username { get; }
-        void OnNewMessage(Message message);
+        void OnNewMessage(Message message, bool mode);
     }
 }

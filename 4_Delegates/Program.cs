@@ -47,6 +47,7 @@ namespace IteaDelegates
             Account acc1 = new Account("Student 1");
             Account acc2 = new Account("Student 2");
             Account acc3 = new Account("Student 3");
+            Account acc4 = new Account("Student 4");
             Group cSharp = new Group("CSharp");
             Message msg1 = acc1.CreateMessage("hello", acc2);
             acc1.Send(msg1);
@@ -54,6 +55,7 @@ namespace IteaDelegates
             acc1.Subscribe(cSharp);
             acc2.Subscribe(cSharp);
             acc3.Subscribe(cSharp);
+            acc4.Subscribe(cSharp, true);
             Message msg2 = acc3.CreateMessage("hi all", cSharp);
             acc3.Send(msg2);
 

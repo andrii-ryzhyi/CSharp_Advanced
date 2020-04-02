@@ -19,7 +19,7 @@ namespace IteaDelegates.IteaMessanger
             Messages = new List<Message>();
         }
 
-        public void OnNewMessage(Message message)
+        public void OnNewMessage(Message message, bool silentMode = false)
         {
             InboxMessage?.Invoke(this, new GroupMessageEventArgs(message));
         }

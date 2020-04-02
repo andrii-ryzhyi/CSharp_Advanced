@@ -6,7 +6,7 @@ using static ITEA_Collections.Common.Extensions;
 
 namespace IteaDelegates.IteaMessanger
 {
-    public delegate void OnMessage(Message message);
+    public delegate void OnMessage(Message message, bool mode);
     public delegate void OnSend(object sender, OnSendEventArgs e);
 
     public class Account : INotifyable
@@ -32,24 +32,29 @@ namespace IteaDelegates.IteaMessanger
             return message;
         }
 
-        public void Subscribe(Group group)
+        public void Subscribe(Group group, bool silentMode = false)
         {
             group.AddUser(this);
-            group.InboxMessage += (sender, e) => this.NewMessage(e.Msg);
+            group.InboxMessage += (sender, e) => this.NewMessage(e.Msg, silentMode);
         }
 
-        public void Send(Message message)
+        public void Send(Message message, bool silentMode = false)
         {
             message.Send = true;
             message.To.Messages.Add(message);
-            message.To.OnNewMessage(message);
+            message.To.OnNewMessage(message, silentMode);
             OnSend?.Invoke(this, new OnSendEventArgs(message.ReadMessage(this), message.From.Username, message.To.Username));
         }
 
-        public void OnNewMessage(Message message)
+        public void OnNewMessage(Message message, bool silentMode)
         {
             if (message.Send)
-                Console.WriteLine($"OnNewMessage:   Username: {this.Username} From: {message.From.Username}: {message.Preview}", ConsoleColor.DarkYellow);
+            {
+                if (!silentMode)
+                    Console.WriteLine($"OnNewMessage:   Username: {this.Username} From: {message.From.Username}: {message.Preview}", ConsoleColor.DarkYellow);
+                else
+                    Console.WriteLine($"OnNewMessage:   New inbox message From: {message.From.Username}", ConsoleColor.DarkYellow);
+            }
         }
 
         public void ShowDialog(string username)

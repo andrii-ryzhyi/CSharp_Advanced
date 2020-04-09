@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IteaDelegates.IteaMessanger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -76,6 +77,53 @@ namespace IteaLinq
             //    .ShowAll()
             //    .OrderByDescending(x => x.Age)
             //    .ShowAll();
+
+            #region HW5_LINQ
+            Account user1 = new Account("User 1");
+            Account user2 = new Account("User 2");
+            Account user3 = new Account("User 3");
+            Account user4 = new Account("User 4");
+            List<Account> users = new List<Account> { user1, user2, user3, user4};
+
+            Group group = new Group("Group");
+
+            user1.Subscribe(group);
+            user2.Subscribe(group);
+            user3.Subscribe(group);
+            user4.Subscribe(group);
+
+            Message msg1 = user1.CreateMessage("hello", group);
+            user1.Send(msg1);
+            Message msg2 = user3.CreateMessage("hi all", group);
+            user3.Send(msg2);
+            Message msg3 = user3.CreateMessage("Message 3", group);
+            user3.Send(msg3);
+            Message msg4 = user3.CreateMessage("Message 4", group);
+            user3.Send(msg4);
+            Message msg5 = user2.CreateMessage("Message 5", group);
+            user2.Send(msg5);
+            Message msg6 = user1.CreateMessage("Message 6", group);
+            user1.Send(msg6);
+            Message msg7 = user3.CreateMessage("Message 7", group);
+            user3.Send(msg7);
+            Message msg8 = user2.CreateMessage("Message 8", group);
+            user2.Send(msg8);
+            Message msg9 = user1.CreateMessage("Message 9", group);
+            user1.Send(msg9);
+            Message msg10 = user3.CreateMessage("Message 10", group);
+            user3.Send(msg10);
+            Message msg11 = user3.CreateMessage("Message 11", user1);
+            user3.Send(msg11);
+            Message msg12 = user3.CreateMessage("Message 12", user2);
+            user3.Send(msg12);
+            Message msg13 = user3.CreateMessage("Message 13", group);
+            user3.Send(msg13);
+
+            Console.WriteLine("-------------------------------");
+
+            
+            Console.Read();
+            #endregion
 
 
         }

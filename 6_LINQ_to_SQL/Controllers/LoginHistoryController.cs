@@ -48,13 +48,16 @@ namespace IteaLinqToSql.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] LoginHistory value)
         {
+            service.Update(id, value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            LoginHistory record = service.FindById(id);
+            service.Delete(record);
         }
     }
 }

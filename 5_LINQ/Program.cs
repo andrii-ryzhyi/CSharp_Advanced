@@ -85,12 +85,13 @@ namespace IteaLinq
             Account user4 = new Account("User 4");
             List<Account> users = new List<Account> { user1, user2, user3, user4};
 
-            Group group = new Group("Group");
+            /*Group group = new Group("Group");
 
             user1.Subscribe(group);
             user2.Subscribe(group);
             user3.Subscribe(group);
             user4.Subscribe(group);
+            
 
             Message msg1 = user1.CreateMessage("hello", group);
             user1.Send(msg1);
@@ -118,6 +119,7 @@ namespace IteaLinq
             user3.Send(msg12);
             Message msg13 = user3.CreateMessage("Message 13", group);
             user3.Send(msg13);
+            */
 
             Console.WriteLine("-------------------------------");
 

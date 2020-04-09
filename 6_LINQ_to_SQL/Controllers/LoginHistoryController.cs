@@ -36,6 +36,17 @@ namespace IteaLinqToSql.Controllers
             return service.FindById(id);
         }
 
+        [HttpGet("customfind")]
+        public List<LoginHistory> Get([FromBody] string device, [FromBody] string ip)
+        {
+            return service
+                .GetAll()
+                .Where(x => x.UserDevice.Equals(device) &&
+                            x.IPAddress.Equals(ip))
+                .OrderByDescending(x => x.LoginTime)
+                .ToList();
+        }
+
         [HttpPost("save")]
         public List<LoginHistory> Post([FromBody] LoginHistory value)
         {

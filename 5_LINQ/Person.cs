@@ -18,6 +18,12 @@ namespace IteaLinq
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
+<<<<<<< HEAD
+=======
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string Appartment { get; set; }
+>>>>>>> b98c0122454e40247b55ad6a0cd6f2bf3579d819
 
         public Person(string name, int age)
         {
@@ -37,10 +43,13 @@ namespace IteaLinq
         {
             return $"{Guid.ToString().Substring(0, 5)}_{Name}: {Gender}, {Age}, {Email}";
         }
+<<<<<<< HEAD
 
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
+=======
+>>>>>>> b98c0122454e40247b55ad6a0cd6f2bf3579d819
     }
 }

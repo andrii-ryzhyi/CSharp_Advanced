@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Serialization;
 
 using Newtonsoft.Json;
@@ -25,6 +26,7 @@ namespace IteaSerialization
         [JsonIgnore]
         [XmlIgnore]
         public Company Company { get; set; }
+        public Department Dept { get; set; }
 
         protected Person() { }
 
@@ -48,8 +50,12 @@ namespace IteaSerialization
         /// <param name="company">Company to set</param>
         public void SetCompany(Company company)
         {
-            Company = company;
-            Company.People.Add(this);
+            Company = company;            
+        }
+        public void SetDepartment(Department dept)
+        {
+            Company?.Departments?.FirstOrDefault(x => x == dept).People.Add(this);
+            Dept = dept;
         }
 
         public override string ToString()
@@ -60,6 +66,15 @@ namespace IteaSerialization
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var person = obj as Person;
+            return person != null &&
+                   Id == person.Id &&
+                   Name.Equals(person.Name) &&
+                   Email.Equals(person.Email);
         }
     }
 }

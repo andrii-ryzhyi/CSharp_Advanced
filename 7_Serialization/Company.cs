@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IteaSerialization
 {
+    [Serializable]
     public class Company : IModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<Person> People { get; set; } = new List<Person>();
+        public List<Department> Departments { get; set; } = new List<Department>();
 
         protected Company() { }
 
@@ -15,6 +17,10 @@ namespace IteaSerialization
         {
             Id = Guid.NewGuid();
             Name = name;
+        }
+        public void AddEmployee(Person employee)
+        {
+            Departments?.Select(x => x == employee.Dept).FirstOrDefault();
         }
     }
 }

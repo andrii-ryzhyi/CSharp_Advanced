@@ -47,6 +47,60 @@ namespace IteaSerialization
             JsonSerialize("microsoftJson", microsoft);
             JsonSerialize("appleJson", apple);
             Company appleFromFile = JsonDeserialize("appleJson");
+            Console.WriteLine("AppleFromFile equals after deserialization: {0}", apple == appleFromFile);
+
+            /*--------------------------------*/
+            Console.WriteLine("***********HW7*****************");
+
+            Department it = new Department("IT");
+            Department infrastructure = new Department("Infra");
+            Department sales = new Department("Sales");
+            Department marketing = new Department("Marketing");
+
+            microsoft.Departments.Add(it);
+            microsoft.Departments.Add(infrastructure);
+            microsoft.Departments.Add(sales);
+            microsoft.Departments.Add(marketing);
+
+            Person employee1 = new Person("Alex", 27);
+            Person employee2 = new Person("Max", 36);
+            Person employee3 = new Person("Nick", 29);
+            Person employee4 = new Person("E4", 30);
+            Person employee5 = new Person("E5", 41);
+            Person employee6 = new Person("E6", 28);
+            Person employee7 = new Person("E7", 25);
+            Person employee8 = new Person("E8", 37);
+            Person employee9 = new Person("E9", 42);
+            Person employee10 = new Person("E10", 34);
+
+            employee1.SetCompany(microsoft);
+            employee2.SetCompany(microsoft);
+            employee3.SetCompany(microsoft);
+            employee4.SetCompany(microsoft);
+            employee5.SetCompany(microsoft);
+            employee6.SetCompany(microsoft);
+            employee7.SetCompany(microsoft);
+            employee8.SetCompany(microsoft);
+            employee9.SetCompany(microsoft);
+            employee10.SetCompany(microsoft);
+
+            employee1.SetDepartment(it);
+            employee2.SetDepartment(it);
+            employee3.SetDepartment(it);
+            employee4.SetDepartment(it);
+            employee5.SetDepartment(infrastructure);
+            employee6.SetDepartment(sales);
+            employee7.SetDepartment(sales);
+            employee8.SetDepartment(marketing);
+            employee9.SetDepartment(infrastructure);
+            employee10.SetDepartment(it);
+
+
+            JsonSerialize("microsoftJson_hw7", microsoft);
+            var fromJson = JsonDeserialize("microsoftJson_hw7");
+            Console.WriteLine("Company equals after deserialization: {0}", microsoft == fromJson);
+
+            Console.Read();
         }
 
         #region Serialization

@@ -26,6 +26,7 @@ namespace IteaSerialization
         [JsonIgnore]
         [XmlIgnore]
         public Company Company { get; set; }
+        [JsonIgnore]
         public Department Dept { get; set; }
 
         protected Person() { }

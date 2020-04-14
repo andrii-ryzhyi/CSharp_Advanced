@@ -18,9 +18,13 @@ namespace IteaSerialization
             Id = Guid.NewGuid();
             Name = name;
         }
-        public void AddEmployee(Person employee)
+
+        public override bool Equals(object obj)
         {
-            Departments?.Select(x => x == employee.Dept).FirstOrDefault();
+            var company = obj as Company;
+            return company != null &&
+                   Id == company.Id &&
+                   Name.Equals(company.Name);
         }
     }
 }

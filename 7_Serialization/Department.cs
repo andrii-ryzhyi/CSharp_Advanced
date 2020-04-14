@@ -23,10 +23,12 @@ namespace IteaSerialization
         }
         public override bool Equals(object obj)
         {
-            var department = obj as Department;
-            return department != null &&
-                   Id == department.Id &&
-                   Name.Equals(department.Name);
+            var other = obj as Department;
+            return other != null &&
+                   Id == other.Id &&
+                   Name.Equals(other.Name) &&
+                   People.Count() == other.People.Count() &&
+                   !People.Except(other.People).Any();
         }
     }
 }

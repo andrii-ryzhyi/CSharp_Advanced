@@ -47,7 +47,7 @@ namespace IteaSerialization
             JsonSerialize("microsoftJson", microsoft);
             JsonSerialize("appleJson", apple);
             Company appleFromFile = JsonDeserialize("appleJson");
-            Console.WriteLine("AppleFromFile equals after deserialization: {0}", apple == appleFromFile);
+            Console.WriteLine("AppleFromFile equals after deserialization: {0}", apple.Equals(appleFromFile));
 
             /*--------------------------------*/
             Console.WriteLine("***********HW7*****************");
@@ -98,7 +98,9 @@ namespace IteaSerialization
 
             JsonSerialize("microsoftJson_hw7", microsoft);
             var fromJson = JsonDeserialize("microsoftJson_hw7");
-            Console.WriteLine("Company equals after deserialization: {0}", microsoft == fromJson);
+            JsonSerialize("microsoftJson_hw7_2attempt", fromJson);
+            Console.WriteLine("Company equals after deserialization: {0}", microsoft.Equals(fromJson));
+            Console.WriteLine(microsoft.Departments.Except(fromJson.Departments).Any());
 
             Console.Read();
         }

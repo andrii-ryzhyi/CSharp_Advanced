@@ -19,12 +19,14 @@ namespace IteaSerialization
             Name = name;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object company)
         {
-            var company = obj as Company;
-            return company != null &&
-                   Id == company.Id &&
-                   Name.Equals(company.Name);
+            var other = company as Company;
+            return other != null &&
+                   Id == other.Id &&
+                   Name.Equals(other.Name) &&
+                   Departments.Count() == other.Departments.Count() && 
+                   !Departments.Except(other.Departments).Any();
         }
     }
 }

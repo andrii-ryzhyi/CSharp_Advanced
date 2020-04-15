@@ -25,8 +25,19 @@ namespace IteaSerialization
             return other != null &&
                    Id == other.Id &&
                    Name.Equals(other.Name) &&
-                   Departments.Count() == other.Departments.Count() && 
-                   !Departments.Except(other.Departments).Any();
+                   Departments.Count() == other.Departments.Count() &&
+                   Departments.Except(other.Departments) == null;
+            //!Departments.Except(other.Departments).Any();
+        }
+
+        public override int GetHashCode()
+        {
+            //return HashCode.Combine(Id, Name, Departments);
+            int hash = 19;
+            hash = hash * 23 + ((Id == null) ? 0 : Id.GetHashCode());
+            hash = hash * 23 + ((Name == null) ? 0 : Name.GetHashCode());
+            hash = hash * 23 + ((Departments == null) ? 0 : Departments.GetHashCode());
+            return hash;
         }
     }
 }

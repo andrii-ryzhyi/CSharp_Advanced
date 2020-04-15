@@ -64,11 +64,6 @@ namespace IteaSerialization
             return $"{Id.ToString().Substring(0, 5)}_{Name}: {Gender}, {Age}, {Email}";
         }
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
         public override bool Equals(object obj)
         {
             var person = obj as Person;
@@ -76,6 +71,16 @@ namespace IteaSerialization
                    Id == person.Id &&
                    Name.Equals(person.Name) &&
                    Email.Equals(person.Email);
+        }
+
+        public override int GetHashCode()
+        {
+            //return HashCode.Combine(Id, Name, Email);
+            int hash = 19;
+            hash = hash * 23 + ((Id == null) ? 0 : Id.GetHashCode());
+            hash = hash * 23 + ((Name == null) ? 0 : Name.GetHashCode());
+            hash = hash * 23 + ((Email == null) ? 0 : Email.GetHashCode());
+            return hash;
         }
     }
 }

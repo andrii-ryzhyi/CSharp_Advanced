@@ -30,5 +30,15 @@ namespace IteaSerialization
                    People.Count() == other.People.Count() &&
                    !People.Except(other.People).Any();
         }
+
+        public override int GetHashCode()
+        {
+            //return HashCode.Combine(Id, Name, People);
+            int hash = 19;
+            hash = hash * 23 + ((Id == null) ? 0 : Id.GetHashCode());
+            hash = hash * 23 + ((Name == null) ? 0 : Name.GetHashCode());
+            hash = hash * 23 + ((People == null) ? 0 : People.GetHashCode());
+            return hash;
+        }
     }
 }

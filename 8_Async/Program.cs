@@ -20,7 +20,7 @@ namespace IteaAsync
 
         static List<int> ints = new List<int>();
         static List<string> strings = new List<string>();
-        static async Task Main(string[] args)
+        static async void Main(string[] args)
         {
             Task<string> allUsersString = GetUserAsync();
             int count = 1;

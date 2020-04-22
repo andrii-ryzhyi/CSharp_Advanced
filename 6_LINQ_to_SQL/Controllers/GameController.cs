@@ -1,43 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using IteaLinqToSql.Models.Entities;
 using IteaLinqToSql.Models.Interfaces;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace IteaLinqToSql.Controllers
 {
-    [Route("api/user")]
+    [Route("api/game")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class GameController : ControllerBase
     {
-        readonly IService<User> service;
+        readonly IService<SaveGame> service;
 
-        public UserController(IService<User> service)
+        public GameController(IService<SaveGame> service)
         {
             this.service = service;
         }
 
         [HttpGet]
-        public List<User> Get()
+        public List<SaveGame> Get()
         {
-            return service
+            /*return service
                 .GetQuery()
-                .Include(x => x.Logins)
-                .Where(x => x.Logins.Count > 0)
-                .ToList();
+                .Include(x => x.SaveGame)
+                .Where(x => x.Games.Count > 0)
+                .ToList();\
+                */
+            return null;
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public SaveGame Get(int id)
         {
             return service.FindById(id);
         }
 
         [HttpPost("save")]
-        public List<User> Post([FromBody] User value)
+        public List<SaveGame> Post([FromBody] SaveGame value)
         {
             return service
                 .GetAll()
@@ -46,16 +49,6 @@ namespace IteaLinqToSql.Controllers
                             x.Id == value.Id)
                 .ToList();
                 
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

@@ -38,6 +38,7 @@ namespace IteaLinqToSql
             );
 
             services.AddTransient<IService<User>, UserService>();
+            services.AddTransient<IService<SaveGame>, SaveGameService>();
 
             services.AddMvc(options => { options.AllowEmptyInputInBodyModelBinding = true; })
                 .AddJsonOptions(options =>

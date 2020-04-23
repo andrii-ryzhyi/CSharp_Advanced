@@ -6,11 +6,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
 using IteaLinq;
 
-=======
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
 using IteaLinqToSql.Models.Entities;
 
 using Newtonsoft.Json;
@@ -23,22 +20,11 @@ namespace IteaAsync
 
         static List<int> ints = new List<int>();
         static List<string> strings = new List<string>();
-<<<<<<< HEAD
         static async Task Main(string[] args)
         {
             Task<string> allUsersString = GetUserAsync();
             int count = 1;
             Task<User>[] taskArray = Enumerable.Repeat(0, 3).Select(x => GetUserByIdAsync(count++)).ToArray();
-=======
-        static void Main(string[] args)
-        {
-            Example(1, "", "wdqwd", "ecsdc", 2.ToString());
-
-            Task<string> allUsersString = GetUserAsync();
-
-            int count = 0;
-            Task<User>[] taskArray = Enumerable.Repeat(0, 3).Select(x => GetUserByIdAsync(++count)).ToArray();
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
 
             Enumerable
                 .Repeat(0, 1000)
@@ -46,7 +32,6 @@ namespace IteaAsync
                 .ToList()
                 .ForEach(x => Console.WriteLine($"Here we have {x}"));
 
-<<<<<<< HEAD
             User[] users = await Task.WhenAll(taskArray);
 
             users.ToList().ForEach(x => Console.WriteLine(x?.ToString()));
@@ -63,40 +48,16 @@ namespace IteaAsync
                 new Person("Etc1", Gender.etc, 42, "etc1@yahoo.com"),
                 new Person("Etc2", Gender.etc, 42, "etc2@gmail.com"),
             };
-=======
-            User[] users = Task.WhenAll(taskArray).GetAwaiter().GetResult();
-
-            users.ToList().ForEach(x => Console.WriteLine(x?.ToString()));
-            string allUsersResult = GetUserAsync().GetAwaiter().GetResult();
-
-            //List<Person> people = new List<Person>
-            //{
-            //    new Person("Pol", Gender.Man, 37, "pol@gmail.com"),
-            //    new Person("Ann", Gender.Woman, 25, "ann@yahoo.com"),
-            //    new Person("Alex", Gender.Man, 21, "alex@gmail.com"),
-            //    new Person("Harry", Gender.Man, 58, "harry@yahoo.com"),
-            //    new Person("Germiona", Gender.Woman, 18, "germiona@gmail.com"),
-            //    new Person("Ron", Gender.Man, 24, "ron@yahoo.com"),
-            //    new Person("Etc1", Gender.etc, 42, "etc1@yahoo.com"),
-            //    new Person("Etc2", Gender.etc, 42, "etc2@gmail.com"),
-            //};
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
 
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             CancellationToken token = cancelTokenSource.Token;
 
-<<<<<<< HEAD
             Func<Task> action = async () =>
-=======
-            Task toConsole = WriteToConsole(token);
-            Func<Task> cancellation = async () =>
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
             {
                 await Task.Delay(2500);
                 cancelTokenSource.Cancel();
             };
 
-<<<<<<< HEAD
             Task toConsole = WriteToConsole(token);
 
             Task cancel = action();
@@ -108,26 +69,6 @@ namespace IteaAsync
             }
             catch (OperationCanceledException) { }
             Console.WriteLine(toConsole.IsCompletedSuccessfully);
-=======
-            Func<Task> checkState = async () =>
-            {
-                while (!token.IsCancellationRequested)
-                {
-                    await Task.Delay(1);
-                    Console.WriteLine($"status: {toConsole.Status}");
-                }
-            };
-
-            Task cancel = cancellation();
-
-            cancel.GetAwaiter().GetResult();
-            try
-            {
-                toConsole.GetAwaiter().GetResult();
-            }
-            catch (OperationCanceledException) { }
-            Console.WriteLine($"IsCompletedSuccessfully: {toConsole.IsCompletedSuccessfully}");
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
 
             Console.WriteLine("The End!");
 
@@ -146,10 +87,6 @@ namespace IteaAsync
 
             //ints.ToFile("ints.txt");
             //strings.ToFile("string.txt");
-<<<<<<< HEAD
-=======
-
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
         }
 
         public static void Ac(string item)
@@ -227,13 +164,5 @@ namespace IteaAsync
         {
             a *= 2;
         }
-<<<<<<< HEAD
-=======
-
-        public static void Example(int i, params string[] par)
-        {
-            foreach (var item in par) Console.WriteLine(item);
-        }
->>>>>>> 0e4d71a29d0f42986a0f1760c40f914ce9bf96cb
     }
 }

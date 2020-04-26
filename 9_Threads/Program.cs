@@ -95,6 +95,9 @@ namespace IteaThreads
             //mt1.thread.Join();
             //mt2.thread.Join();
 
+            ThreadTest.LaunchFixedTime(3);
+            ThreadTest.LaunchFixedWork(3);
+            ThreadTest.LaunchFixedWork(3, true);
             //Console.ReadLine();
         }
 
